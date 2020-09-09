@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import TwitterLogin from 'react-twitter-login';
 import {setLocalStorage} from '../helper';
 import {setLoading, loginUser} from '../actions';
+import {client_url} from '../gloabal_var';
 
 const Landing = ({setLoading, loginUser}) =>{ 
 
@@ -24,7 +25,7 @@ const Landing = ({setLoading, loginUser}) =>{
             authCallback={authHandler}
             consumerKey="xb1AisISE9fAYqpEIcZFDEEuj"
             consumerSecret="9OcMN8dDKSYDgSjF3LMNwrSybUN9bLIPtqA8XOwmpF2DJ5GODm"
-            callbackUrl="http://localhost:3000/callback"
+            callbackUrl={`${client_url}/callback`}
             />
         </div>
     )

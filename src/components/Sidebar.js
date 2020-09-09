@@ -15,7 +15,7 @@ const Sidebar = ({active, setActive, trends, onSubmit, setFilteredTweets}) =>{
 
     const onSelect = (i) =>{
         setActive(i);
-        if(i == 1){
+        if(i === 1){
             showModal(true);
         }else{
             showModal(false);
@@ -58,11 +58,11 @@ const Sidebar = ({active, setActive, trends, onSubmit, setFilteredTweets}) =>{
                 {localStorage.screen_name}
             </Header>
             <Button.Group>
-                <Button color={active==0 ? "orange" : null} onClick={()=>{
+                <Button color={active===0 ? "orange" : null} onClick={()=>{
                     onSelect(0);
                 }} ><Icon name="home"/>Recent Tweets</Button>
                 <Button.Or />
-                <Button color={active==1 ? "green" : null} onClick={()=>{
+                <Button color={active===1 ? "green" : null} onClick={()=>{
                     onSelect(1);
                 }} ><Icon name="filter"/>Filter</Button>
             </Button.Group>

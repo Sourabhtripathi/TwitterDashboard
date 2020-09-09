@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { List, Item, Card } from 'semantic-ui-react';
+import React, {useEffect} from 'react';
+import { Item, Card } from 'semantic-ui-react';
 
 const DisplayList = ({active, data}) =>{
     useEffect(()=>{

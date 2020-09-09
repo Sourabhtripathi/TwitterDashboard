@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import '../stylesheets/Modal.css';
-import { setSelectedTrends, setLoading } from '../actions';
+import { setSelectedTrends } from '../actions';
 import {connect} from 'react-redux';
-import { Button, Icon, List, Modal, Grid, Item,Checkbox } from 'semantic-ui-react'
+import { Button, Icon, List, Modal, Grid,Checkbox } from 'semantic-ui-react'
 
 
 const ModalParent = ({data, setSelectedTrends, showModal, onSubmit, modal}) =>{
