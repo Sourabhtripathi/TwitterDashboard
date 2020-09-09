@@ -1,7 +1,11 @@
 const isEmpty = require('is-empty');
 const initialState = {
 	isAuthenticated: false,
-	user: {},
+	user: {
+		id : '',
+		image : '',
+		name : ''
+	},
 	loading: true
 };
 export default function(state = initialState, action) {
@@ -10,7 +14,7 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				isAuthenticated: !isEmpty(action.payload),
-				user: action.payload
+				user: {...state.user, id : action.payload}
 			};
 		case "SET_LOADING":
 			return {

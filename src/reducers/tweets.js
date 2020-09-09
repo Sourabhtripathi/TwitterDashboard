@@ -24,6 +24,11 @@ export default function(state = initialState, action) {
         case "SET_FILTERED_TWEETS":
             return {
                 ...state,
+                filteredTweets: action.payload
+            };
+        case "ADD_FILTERED_TWEETS":
+            return {
+                ...state,
                 filteredTweets: [...state.filteredTweets, ...action.payload]
             };
 		default:

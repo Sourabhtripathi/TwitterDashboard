@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import myserver from '../api/myserver';
-import {  setRecentTrends, setFilteredTweets,setSelectedTrends, setRecentTweets, setLoading } from '../actions';
+import {  setRecentTrends, addFilteredTweets, setFilteredTweets,setSelectedTrends, setRecentTweets, setLoading } from '../actions';
 import {connect} from 'react-redux';
 import Sidebar from './Sidebar';
 import List from './List';
+import { Grid } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react'
 
-const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets, setFilteredTweets, setLoading}) =>{
+
+const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets, addFilteredTweets, setFilteredTweets, setLoading}) =>{
     const [active, setActive] = useState(0);
     
     useEffect(()=>{
@@ -20,12 +22,12 @@ const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets,
             oauth_token_secret : localStorage.oauth_token_secret,
             user_id : localStorage.user_id,
         }
-        myserver.get("/get_tweets", {
-                params : data
-            }).then(res=>{
-            console.log(res.data);
-            setRecentTweets(res.data);
-        });
+        // myserver.get("/get_tweets", {
+        //         params : data
+        //     }).then(res=>{
+        //     console.log(res.data);
+        //     setRecentTweets(res.data);
+        // });
 
         myserver.get("/get_trends", {
             params : data
@@ -36,6 +38,7 @@ const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets,
     },[]);
 
     const onSubmit = () => {
+        setFilteredTweets([]);
         let data = {
             screen_name : localStorage.screen_name,
             oauth_token : localStorage.oauth_token,
@@ -51,7 +54,7 @@ const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets,
                 params : data
             }).then(res=>{
                 console.log(res.data.statuses);
-                setFilteredTweets(res.data.statuses);
+                addFilteredTweets(res.data.statuses);
             })
             .catch(err=>{
                 console.log(err);
@@ -59,10 +62,18 @@ const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets,
         }
     }
     return (
-        <div>
-            <Sidebar active={active} setActive={setActive} onSubmit={onSubmit}/>
-            <List active={active} data={active==0 ? tweets.recent: tweets.filteredTweets}/>
-        </div>
+        <Container >
+            <Grid>
+                <Grid.Row>
+                    <Grid.Column width={4} style={{padding : "2em"}}>
+                        <Sidebar active={active} setActive={setActive} onSubmit={onSubmit}/>
+                    </Grid.Column>
+                    <Grid.Column width={12} style={{padding : "4em", marginBottom : "10px !important"}}>
+                        <List active={active} data={active==0 ? tweets.recent: tweets.filteredTweets}/>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        </Container>
     )
 }
     
@@ -70,4 +81,4 @@ const mapStateToProps = ({tweets}) => ({
     tweets
 });
 
-export default connect(mapStateToProps, {setLoading, setRecentTweets, setFilteredTweets, setRecentTrends, setSelectedTrends})(Dashboard);
+export default connect(mapStateToProps, {setLoading, setRecentTweets, addFilteredTweets, setFilteredTweets, setRecentTrends, setSelectedTrends})(Dashboard);

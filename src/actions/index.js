@@ -37,3 +37,8 @@ export const setSelectedTrends = (data) => (dispatch) => {
 export const setFilteredTweets = (data) => (dispatch) => {
 	dispatch({ type: "SET_FILTERED_TWEETS", payload: data });
 };
+
+// Add to Filtered Data
+export const addFilteredTweets = (data) => (dispatch) => {
+	dispatch({ type: "ADD_FILTERED_TWEETS", payload: data });
+};

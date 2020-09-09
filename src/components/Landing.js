@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import {connect} from 'react-redux'
 import TwitterLogin from 'react-twitter-login';
 import {setLocalStorage} from '../helper';

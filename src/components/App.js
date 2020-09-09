@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
 import {connect} from 'react-redux'
 import {setLoading, loginUser} from '../actions';
 import {configureAuth} from '../helper';
+import "../stylesheets/App.css";
+import 'semantic-ui-css/semantic.min.css';
 
 const App = ({auth, setLoading, loginUser}) =>{
     useEffect(()=>{
