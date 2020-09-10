@@ -25,7 +25,7 @@ const Landing = ({setLoading, loginUser}) =>{
             authCallback={authHandler}
             consumerKey="xb1AisISE9fAYqpEIcZFDEEuj"
             consumerSecret="9OcMN8dDKSYDgSjF3LMNwrSybUN9bLIPtqA8XOwmpF2DJ5GODm"
-            callbackUrl={`${clientUrl}/callback`}
+            callbackUrl={clientUrl}
             />
         </div>
     )
