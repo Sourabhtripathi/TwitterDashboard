@@ -22,12 +22,12 @@ const Dashboard = ({tweets, setRecentTrends, setSelectedTrends, setRecentTweets,
             oauth_token_secret : localStorage.oauth_token_secret,
             user_id : localStorage.user_id,
         }
-        // myserver.get("/get_tweets", {
-        //         params : data
-        //     }).then(res=>{
-        //     console.log(res.data);
-        //     setRecentTweets(res.data);
-        // });
+        myserver.get("/get_tweets", {
+                params : data
+            }).then(res=>{
+            console.log(res.data);
+            setRecentTweets(res.data);
+        });
 
         myserver.get("/get_trends", {
             params : data
